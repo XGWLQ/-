@@ -1,0 +1,56 @@
+.swiper_index{
+	swiper{
+		width: 750rpx;
+	height: 340rpx;
+
+	}
+
+}
+.nav_index{
+	display: flex;
+	navigator{
+		flex: 1;
+		padding: 20rpx;
+	}
+}
+.floor_index{
+	.floor_item{
+		.floor_title{
+			margin: 10rpx 0;
+		}
+		.floor_list{
+			 // 清除浮动
+			 overflow: hidden;
+			navigator{
+				float: left;
+				width: 33.33%;
+				// 计算后四张图片的高
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5){
+					// 第一张宽高 232*386
+					// 实际宽高 232 / 386 = 33.33vw	/ height
+					// height = 33.33vw * 386 /232
+					height:  (33.33vw * 386 / 232 / 2);
+					border-left: 10rpx solid #fff;
+
+				}
+				/* 2 3 两个超链接 */
+				&:nth-child(2),
+				&:nth-child(3){
+					border-bottom: 10rpx solid #fff;
+				}
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			// &::before{
+			// 	content: '';
+			// 	display: block;
+			// 	clear: both;
+			// }
+		}
+	}
+}

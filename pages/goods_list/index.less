@@ -1,0 +1,34 @@
+.goods_list{
+	.good_list_tab{
+		.good_item{
+			display: flex;
+			border-bottom: 2rpx solid #cccccc;
+			.good_left_img{
+				flex: 2;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 20rpx;
+				image{
+					width: 70%;
+				}
+			}
+			.good_right_info{
+				flex: 3;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				.info_text{
+					display: -webkit-box;
+					overflow: hidden;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+				}
+				.info_price{
+					color: var(--themeColor);
+					font-size: 32rpx;
+				}
+			}
+		}
+	}
+}

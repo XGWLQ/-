@@ -1,0 +1,7 @@
+.revice_address .address_btn {
+  width: 100%;
+  padding: 20rpx 0;
+}
+.revice_address .address_btn button {
+  width: 70%;
+}

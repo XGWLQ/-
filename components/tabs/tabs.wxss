@@ -1,0 +1,15 @@
+.tads .tabs_title {
+  display: flex;
+}
+.tads .tabs_title .tab_item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 0;
+  font-size: 30rpx;
+}
+.tads .tabs_title .active {
+  color: var(--themeColor);
+  border-bottom: 4rpx solid currentColor;
+}

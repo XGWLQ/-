@@ -1,0 +1,6 @@
+<!-- 添加商品地址 -->
+<view class="revice_address">
+	<view class="address_btn">
+		<button type="primary" plain bind:tap="handleChooseAddress">获取收货地址</button>
+	</view>
+</view>

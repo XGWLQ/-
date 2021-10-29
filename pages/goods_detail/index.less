@@ -1,0 +1,96 @@
+page{
+	padding-bottom: 105rpx;
+}
+.good_detail{
+	.detail_img{
+		swiper{
+			height: 55vh;
+			// padding: 40rpx;
+			imgage{
+				width: 40%;
+			}
+		}
+	}
+	.good_price{
+		color: var(--themeColor);
+		font-size: 43rpx;
+		font-weight: bold;
+		padding: 15rpx;
+	}
+	.good_info{
+		display: flex;
+		border-top: 5rpx solid #e2e4e2;
+		border-bottom: 10rpx solid #e2e4e2;
+		padding: 8rpx 0;
+		.info{
+			flex: 5;
+			border-right: 4rpx solid #8c8f86;
+			color: #555452;
+			font-size: 30rpx;
+			padding:8rpx;
+			// 多出来的显示省略号
+			display: -webkit-box;
+			overflow: hidden;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+		.collect{
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 30rpx;
+		}
+	}
+	.good_img_detail{
+		.info_title{
+			font-size: 36rpx;
+			font-weight: bold;
+			color: var(--themeColor);
+			padding: 15rpx 0 10rpx 10rpx;
+			// line-height: 50rpx;
+		}
+	}
+	.btn_tool{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		background-color: #fff;
+		width: 100%;
+		height: 100rpx;
+		display: flex;
+		border-top: 2px solid #ccc;
+		.tool_item{
+			flex: 1.5;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 25rpx;
+			position: relative;
+			button{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+			}
+		}
+		.btn_cart{
+			flex: 2;
+			background-color: #f49c03;
+			color: #fff;
+			font-size: 30rpx;
+			font-weight: 600px;
+		}
+		.btn_buy{
+			flex: 2;
+			background-color: var(--themeColor);
+			color: #fff;
+			font-size: 30rpx;
+			font-weight: 600px;
+		}
+	}
+}
