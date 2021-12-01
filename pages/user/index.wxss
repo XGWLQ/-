@@ -1,1 +1,164 @@
-/* pages/user/index.wxss */
+page {
+  background-color: #edece8;
+  color: #767774;
+}
+.user_info_warp {
+  height: 45vh;
+  position: relative;
+  background-color: var(--themeColor);
+  overflow: hidden;
+}
+.user_info_warp .user_img .user_bg {
+  height: 50vh;
+  filter: blur(5px);
+}
+.user_info_warp .user_img .user_info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.user_info_warp .user_img .user_info .user_icon {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+}
+.user_info_warp .user_img .user_info .user_name {
+  font-size: 32rpx;
+  margin-top: 30rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.user_info_warp .login_btn {
+  width: 200rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.user_info_warp .login_btn navigator {
+  height: 90rpx;
+  background-color: #07c160;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  border-radius: 10rpx;
+  color: #fff;
+}
+.user_centent {
+  position: relative;
+}
+.user_centent .user_main {
+  position: absolute;
+  top: -50rpx;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.user_centent .user_main .history {
+  display: flex;
+  background-color: #fff;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+}
+.user_centent .user_main .history .history_item {
+  flex: 1;
+  padding: 20rpx 10rpx;
+  text-align: center;
+}
+.user_centent .user_main .history .history_item .num {
+  color: var(--themeColor);
+}
+.user_centent .user_main .order_warp {
+  margin-top: 20rpx;
+}
+.user_centent .user_main .order_warp .order_title {
+  background-color: #fff;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  border-bottom: 4rpx solid #edece8;
+  padding-left: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+}
+.user_centent .user_main .order_warp .order_content {
+  display: flex;
+  background-color: #fff;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+}
+.user_centent .user_main .order_warp .order_content .order_item {
+  flex: 1;
+  padding: 13rpx;
+  text-align: center;
+}
+.user_centent .user_main .order_warp .order_content .order_item .icon {
+  color: var(--themeColor);
+  font-size: 30rpx;
+}
+.user_centent .user_main .address_warp {
+  display: flex;
+  background-color: #fff;
+  line-height: 80rpx;
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  border-bottom-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+}
+.user_centent .user_main .address_warp .address_info {
+  flex: 2;
+}
+.user_centent .user_main .address_warp .address_left {
+  flex: 1;
+  text-align: right;
+}
+.user_centent .user_main .kefu_warp .kefu_item {
+  display: flex;
+  background-color: #fff;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  border-bottom: 4rpx solid #edece8;
+  border-bottom-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+}
+.user_centent .user_main .kefu_warp .kefu_item .kefu_info {
+  flex: 2;
+}
+.user_centent .user_main .kefu_warp .kefu_item .kefu_left {
+  flex: 1;
+  text-align: right;
+}
+.user_centent .user_main .push_warp {
+  display: flex;
+  background-color: #fff;
+  line-height: 80rpx;
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  border-bottom-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+}
+.user_centent .user_main .push_warp .address_info {
+  flex: 2;
+}
+.user_centent .user_main .push_warp .address_left {
+  flex: 1;
+  text-align: right;
+}
+.user_centent .user_main button {
+  width: 100%;
+  margin-bottom: 10rpx;
+}

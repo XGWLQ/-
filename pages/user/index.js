@@ -1,66 +1,45 @@
 // pages/user/index.js
 Page({
-
   /**
-   * 页面的初始数据
-   */
+ * 页面的初始数据
+ */
   data: {
+    userInfo: {},
+    // 收藏商品的数量
+    collectNum: 0
+  },
+  onShow () {
+    // 页面显示的时候获取用户数据
+    const userInfo = wx.getStorageSync("userinfo")
+    // 获取缓冲中的收藏数据
+    const collect = wx.getStorageSync("collect") || []
+    let { collectNum } = this.data
+    // 获取数据
+    collectNum = collect.length
+    this.setData({
+      userInfo,
+      collectNum
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  // 用户退出
+  handleLoginOut () {
+    wx.showModal({
+      title: '退出',
+      content: '是否退出登录',
+      showCancel: true,
+      success: (result) => {
+        if (result.confirm) {
+          this.setData({
+            userInfo: ""
+          })
+          wx.showToast({
+            title: '登出成功',
+            mask: false
+          })
+        }
+      }
+    });
 
   }
 })

@@ -1,2 +1,22 @@
-<!--pages/collect/index.wxml-->
-<text>pages/collect/index.wxml</text>
+<tabs tabs="{{tabs}}" bind:itemChange="handleTabChenge">
+	<view class="cellet_miam">
+		<view class="tabs">
+			<text class="tabs_item active">全部</text>
+			<text class="tabs_item">正在热卖</text>
+			<text class="tabs_item">即将上线</text>
+		</view>
+
+		<navigator class="cellet_item" 
+		wx:for="{{collectList}}"
+		wx:key="goods_id"
+		url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
+			<view class="item_img">
+				<image mode="widthFix" src="{{item.goods_small_logo?item.goods_small_logo:'https://img2.baidu.com/it/u=3247258460,3531169915&fm=26&fmt=auto'}}" />
+			</view>
+			<viwe class="item_context">
+				<view class="item_name">{{item.goods_name}}</view>
+				<view class="item_price">{{item.goods_price}}</view>
+			</viwe>
+		</navigator>
+	</view>
+</tabs>

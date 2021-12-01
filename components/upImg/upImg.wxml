@@ -1,0 +1,5 @@
+<view class="upImg_warp">
+  <image src="{{src}}" />
+  <icon type="clear" size="25" color="red" bind:tap="handleDelImg"></icon>
+    
+</view>

@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-10-27 17:06:15
+ * @LastEditTime: 2021-11-07 23:15:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \黑马优购\pages\index\index.js
+ */
 // 使用封装的请求函数调用数据
 import { requset } from '../../request/index.js';
 import regeneratorRuntime from '../../lib/runtime/runtime';
@@ -48,6 +56,12 @@ Page({
   // 获取楼层数据
   async _getFloorList () {
     const { data } = await requset({ url: '/home/floordata' })
+    //  改变 拼接
+    data.message.forEach(v => {
+      v.product_list.forEach(item => {
+        return item.navigator_url = item.navigator_url.replace(/goods_list/g, 'goods_list/index')
+      })
+    })
     this.setData({
       floorList: data.message
     })

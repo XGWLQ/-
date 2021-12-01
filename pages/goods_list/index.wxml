@@ -12,7 +12,7 @@
 				>
 					<!-- 左侧图片容器 -->
 					<view class="good_left_img">
-						<image mode="widthFix" src="{{item.goods_small_logo?item.goods_small_logo:'http://image4.suning.cn/uimg/b2c/newcatentries/0070078057-000000000154099975_1_400x400.jpg'}}" />
+						<image mode="widthFix" src="{{item.goods_small_logo?item.goods_small_logo:'https://img2.baidu.com/it/u=3247258460,3531169915&fm=26&fmt=auto'}}" />
 					</view>
 					<!-- 右侧商品信息容器 -->
 					<view class="good_right_info">

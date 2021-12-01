@@ -18,8 +18,8 @@
 		<!-- 介绍 -->
 		<view class="info">{{goodDetail.goods_name}}</view>
 		<!-- 收藏 -->
-		<view class="collect">
-			<view class="iconfont icon-shoucang"></view>
+		<view class="collect" bind:tap="handleCollectShow">
+			<view class="iconfont {{isCollect?'icon-shoucang1':'icon-shoucang'}}"></view>
 			<view>收藏</view>
 		</view>
 	</view>

@@ -1,42 +1,27 @@
 <view class="category_index">
-	<!-- 搜索框 -->
-	<searchInput></searchInput>
-	<!-- 商品分类 -->
-	<view class="cateContent">
-		<!-- 左侧菜单 -->
-		<scroll-view class="left_item"  scroll-y="{{true}}">
-			<view 
-			class="menu_item {{index==currenIndex?'active':''}}"
-			wx:for="{{leftItem}}"
-			wx:key="*this"
-			bind:tap="handleIItemTap"
-			data-index="{{index}}"
-			>{{item}}</view>
-		</scroll-view>
-		<!-- 右侧菜单 -->
-		<scroll-view class="right_item" scroll-y scroll-top="{{scrollTop}}">
-			<view class="good_item"
-			wx:for="{{rigthItem}}"
-			wx:for-index="index1"
-			wx:for-item="item1"
-			wx:key="cat_id"
-			>
-				<!-- 商品标题 -->
-				<view class="good_title">/ {{item1.cat_name}} /</view>
-				<!-- 商品内容 -->
-				<view class="good_list">
-					<navigator 
-					wx:for='{{item1.children}}'
-					wx:for-index="index2"
-					wx:for-item="item2"
-					wx:key="cat_id"
-					url="/pages/goods_list/index?cid={{item2.cat_id}}"
-					>
-						<image src="{{item2.cat_icon}}" mode="widthFix"/>
-						<view class="good_name">{{item2.cat_name}}</view>
-					</navigator>
-				</view>
-			</view>
-		</scroll-view>
-	</view>
+  <!-- 搜索框 -->
+  <searchInput></searchInput>
+  <!-- 商品分类 -->
+  <view class="cateContent">
+    <!-- 左侧菜单 -->
+    <scroll-view class="left_item" scroll-y="{{true}}">
+      <view class="menu_item {{index==currenIndex?'active':''}}" wx:for="{{leftItem}}" wx:key="*this" bind:tap="handleIItemTap" data-index="{{index}}">
+        {{item}}
+      </view>
+    </scroll-view>
+    <!-- 右侧菜单 -->
+    <scroll-view class="right_item" scroll-y scroll-top="{{scrollTop}}">
+      <view class="good_item" wx:for="{{rigthItem}}" wx:for-index="index1" wx:for-item="item1" wx:key="cat_id">
+        <!-- 商品标题 -->
+        <view class="good_title">/ {{item1.cat_name}} /</view>
+        <!-- 商品内容 -->
+        <view class="good_list">
+          <navigator wx:for="{{item1.children}}" wx:for-index="index2" wx:for-item="item2" wx:key="cat_id" url="/pages/goods_list/index?cid={{item2.cat_id}}">
+            <image src="{{item2.cat_icon}}" mode="widthFix" />
+            <view class="good_name">{{item2.cat_name}}</view>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 </view>

@@ -1,0 +1,51 @@
+page{
+	background-color: #f2f4f5;
+}
+.cellet_miam{
+	
+	overflow: hidden;
+	.tabs{
+		padding: 20rpx 0;
+		margin: 10rpx;
+	.tabs_item{
+		font-size: 28rpx;
+		padding: 15rpx 8rpx;
+		border: 2rpx solid #666;
+		margin: 0 10rpx;
+		background-color: #fff;
+	}
+	.active{
+		color: var(--themeColor);
+		border-color: var(--themeColor);
+	}
+	}
+	.cellet_item{
+		background-color: #fff;
+		display: flex;
+		padding: 0 10rpx;
+		border: 4rpx solid #f2f4f5;
+		border-radius: 20rpx;
+		.item_img{
+			flex: 1;
+			image{
+				width: 90%;
+			}
+		}
+		.item_context{
+			flex: 2;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			.item_name{
+				display: -webkit-box;
+				overflow: hidden;
+				-webkit-box-orient: vertical ;
+				-webkit-line-clamp: 2;
+			}
+			.item_price{
+				color: var(--themeColor);
+				font-size: 32rpx;
+			}
+		}
+	}	
+}

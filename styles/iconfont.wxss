@@ -17,6 +17,7 @@
   
   .icon-shoucang1:before {
 	content: "\e631";
+  color: var(--themeColor);
   }
   
   .icon-shoucang:before {

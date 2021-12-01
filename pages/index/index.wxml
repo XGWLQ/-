@@ -18,7 +18,7 @@
      -->
 		<swiper autoplay="{{true}}" indicator-dots="{{true}}" interval="2000" circular="{{true}}">
 			<swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
-				<navigator url="{{item.navigator_url}}">
+				<navigator url="/pages/goods_detail/index?goods_id=129">
 					<image src="{{item.image_src}}" mode="widthFix" ></image>
 				</navigator>
 			</swiper-item>

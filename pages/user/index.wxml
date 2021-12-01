@@ -1,2 +1,95 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+<!-- 上面的个人信息和头像 -->
+<view class="user_info_warp">
+	<view wx:if="{{userInfo.avatarUrl}}" class="user_img">
+		<!-- 背景图片 -->
+		<image class="user_bg" src="{{userInfo.avatarUrl}}"></image>
+		<!-- 用户信息 -->
+		<view class="user_info">
+			<!-- 头像 -->
+			<image class="user_icon" src="{{userInfo.avatarUrl}}"></image>
+			<!-- 微信名 -->
+			<view class="user_name">{{userInfo.nickName}}</view>
+		</view>	
+	</view>
+	<view wx:else class="login_btn">
+		<navigator url="/pages/login/index">登 录</navigator>
+	</view>
+</view>
+
+
+<!-- 主题内容 -->
+<view class="user_centent">
+	<view class="user_main">
+		<!-- 历史组件 -->
+		<view class="history">
+			<navigator class="history_item">
+				<view class="num">0</view>
+				<view class="name">收藏的店铺</view>
+			</navigator>
+			<navigator class="history_item" url="/pages/collect/index">
+				<view class="num">{{collectNum}}</view>
+				<view class="name">收藏的商品</view>
+			</navigator>
+			<navigator class="history_item">
+				<view class="num">0</view>
+				<view class="name">关注的商品</view>
+			</navigator>
+			<navigator class="history_item">
+				<view class="num">0</view>
+				<view class="name">我的足迹</view>
+			</navigator>
+		</view>
+		<!-- 我的订单 -->
+		<view class="order_warp">
+			<view class="order_title">我的订单</view>
+			<view class="order_content">
+				<navigator class="order_item" url="/pages/order/index?type=1">
+					<view class="icon iconfont icon-ding_dan"></view>
+					<view class="name">全部订单</view>
+				</navigator>
+				<navigator class="order_item" url="/pages/order/index?type=2">
+					<view class="icon iconfont icon-fukuantongzhi"></view>
+					<view class="name">代付款</view>
+				</navigator>
+				<navigator class="order_item" url="/pages/order/index?type=3">
+					<view class="icon iconfont icon-receipt-address"></view>
+					<view class="name">待收货</view>
+				</navigator>
+				<navigator class="order_item">
+					<view class="icon iconfont icon-tuihuotuikuan_dianpu"></view>
+					<view class="name">退款/退货</view>
+				</navigator>
+			</view>
+		</view>
+		<!-- 收货地址管理 -->
+		<navigator class="address_warp">
+			<view class="address_info">收货地址管理</view>
+			<view class="address_left"> > </view>
+		</navigator>
+
+		<!-- 联系客服 -->
+		<view class="kefu_warp">
+			<view class="kefu_item">
+				<view class="kefu_info">联系客服</view>
+				<view class="kefu_left">400-618-4000</view>
+			</view>
+			<navigator class="kefu_item" url="/pages/feedback/index">
+				<view class="kefu_info">意见反馈</view>
+				<view class="kefu_left"> > </view>
+			</navigator>
+			<navigator class="kefu_item">
+				<view class="kefu_info">关于我们</view>
+				<view class="kefu_left"> > </view>
+			</navigator>
+		</view>
+
+		<!-- 推荐给其他人 -->
+		<navigator class="push_warp">
+			<view class="push_info">把应用推荐给其他人</view>
+			<view class="push_left"> > </view>
+		</navigator>
+
+		<!-- 退出登录 -->
+		<button wx:if="{{userInfo.avatarUrl}}" type="primary" bindtap="handleLoginOut">退出登录</button>
+	</view>
+</view>

@@ -1,2 +1,1 @@
-<!--pages/auth/index.wxml-->
-<text>pages/auth/index.wxml</text>
+<button type="primary" bind:tap="handlegetUserInfo">授权</button>

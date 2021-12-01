@@ -69,9 +69,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addressList: {}
+    isShowAddressBtn: true,
+    // 存储收货地址
+    address: {},
+    // 购物车中的数据
+    cart: [],
+    // 底部全选按钮的变量
+    allChecked: false,
+    // 总价格 总数量
+    totalPrice: 0,
+    totalNum: 0
   },
+  // 页面显示的时候
+  onShow () {
+    // 1、判断本地存储是否有收货地址
+    const address = wx.getStorageSync("address")
+    // 获取本地存储中的购物车数据
+    const cart = wx.getStorageSync('cart') || []
+    // 将地址存储起来
+    this.setData({ address })
+    this.setPrice(cart)
 
+  },
   // 小程序获取地址方法
   handleChooseAddress () {
     // 有时候用户点击可可能是取消 后面就获取不到地址了
@@ -80,28 +99,148 @@ Page({
       success: (res) => {
         const scope = res.authSetting["scope.address"]
         // 点击确定 或者 没有调用过api
-        if (scope === true || scope === undefined) {
-          this.getChooseAddress()
-        } else {
+        if (!scope) {
           // 授权设置页面(wx.openSetting)
           wx.openSetting({
-            success: (res) => {
-              this.getChooseAddress()
-            }
-          });
+            success: (res) => { this.getChooseAddress() }
+          })
         }
+        this.getChooseAddress()
       }
     })
   },
+  // 商品单选按钮的选中和重新计算价格和数量
+  handleItemChange (e) {
+    // 获取到选中商品的id
+    const { id } = e.currentTarget.dataset
+    // 获取自己的购物车出具
+    const { cart } = this.data
+    // 商品对象的选中状态 取反
+    const index = cart.findIndex(v => v.goods_id === id)
+
+    // 如果商品的数量为0时，用户点击单选框时标识他想添加这件商品 把他的num 变为1
+    if (cart[index].num === 0) {
+      cart[index].num = 1
+    }
+    cart[index].checked = !cart[index].checked
+
+    this.setPrice(cart)
+  },
+
+  // 全选按钮的方法
+  handleAllCheck () {
+    // 1 获取data中的数据
+    let { cart, allChecked } = this.data;
+    // 2 修改值
+    allChecked = !allChecked;
+    // 3 循环修改cart数组 中的商品选中状态
+    cart.forEach(v => v.checked = allChecked);
+
+    this.setPrice(cart)
+  },
+
+  // 点击商品加减按钮进行商品数量和总价更改
+  goodNumEdit (e) {
+    // flag 为true 标识商品数量加1 反之建议
+    const { flag, id } = e.currentTarget.dataset
+    // 获取data中的购物车数据
+    let { cart } = this.data
+    // 找到修改对应商品的索引
+    const index = cart.findIndex(v => v.goods_id === id)
+    // 根据传过来的参数进行调用
+    if (flag === 'true') {
+      cart[index].num++
+    } else {
+      cart[index].num--
+      // 当商品数量等于0时 弹出提示框
+      if (cart[index].num == 0) {
+        wx.showModal({
+          title: '是否删除商品？',
+          content: '当前商品数量为0',
+          success: (result) => {
+            if (result.confirm) {
+              cart.splice(index, 1)
+            } else {
+              // 点击取消后 商品的复选框取消掉
+              cart[index].checked = false
+            }
+            this.setPrice(cart)
+          }
+        })
+        // 商品在零后没法在减少了
+      } else if (cart[index].num < 0) {
+        cart[index].num = 0
+        this.showToast("该宝贝不能减少了哟~")
+      }
+    }
+    this.setPrice(cart)
+  },
+
+  //商品的结算
+  orderPayTap () {
+    // 1 判断有没有收货地址信息
+    const { address, totalNum } = this.data
+    // 2 判断用户有没有选购商品
+    if (totalNum === 0) {
+      return this.showToast("您还没有选购商品")
+    }
+    if (!address.userName) {
+      // 没有提示用户
+      return this.showToast("请先添加收货地址")
+    }
+
+    // 3 经过以上的验证 跳转到 支付页面！ 
+    wx.navigateTo({ url: '/pages/pay/index' })
+  },
+
   // 封装获取地址的api
   getChooseAddress () {
     wx.chooseAddress({
       success: (res) => {
-        this.setData({
-          addressList: res
-        })
+        // 保存到本地存储
+        wx.setStorageSync("address", res);
       }
     })
-  }
+  },
+  // 封装修改商品价格数量的方法
+  setPrice (cart) {
 
+    // 根据购物车中的商品数据 所有的商品都被选中 checked=true  全选就被选中
+    /* 
+    every 数组方法会遍历 接收一个数组每一个回调都返回true 那么 方法就返回true 
+    只要有一项返回false 方法就中断循环返回 false
+    如果遍历的是空数组 那他返回的也是true
+    */
+    // const allChecked = cart.length?cart.every(v=>v.checked):false
+    // 总价格 总数量
+    let allChecked = true
+    let totalPrice = 0
+    let totalNum = 0
+    cart.forEach(v => {
+      if (v.checked) {
+        totalPrice += v.num * v.goods_price
+        totalNum += v.num
+      } else {
+        allChecked = false
+      }
+    })
+    // 上面数组没有数据的时候 不执行 所以要改变他的值
+    allChecked = cart.length == 0 ? false : allChecked
+    // 将地址存储起来
+    this.setData({
+      cart,
+      allChecked,
+      totalPrice,
+      totalNum
+    })
+    // 重新保存缓存
+    wx.setStorageSync("cart", cart)
+  },
+  // 封装提示用户的弹窗
+  showToast (title) {
+    wx.showToast({
+      title: title,
+      icon: 'none',
+    })
+  }
 })

@@ -41,7 +41,7 @@ Page({
     if (!cateList) { //就获取
       this._getCateList()
     } else { //有数据
-      if (Date.now() - cateList.timer > 1000 * 10) {//判断是否超时 如果超时重新获取
+      if (Date.now() - cateList.timer > 1000 * 300) {//判断是否超时 如果超时重新获取
         this._getCateList()
       } else { // 有数据没超时使用旧数据
         console.log("有数据没超时使用旧数据");

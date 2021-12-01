@@ -16,7 +16,7 @@ page {
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
-  border-bottom: 1px solid #abb2b2;
+  border-bottom: 1px solid #eceeeb;
   font-size: 30rpx;
 }
 .category_index .cateContent .left_item .active {

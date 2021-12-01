@@ -1,2 +1,50 @@
-<!--pages/pay/index.wxml-->
-<text>pages/pay/index.wxml</text>
+<!-- 添加商品地址 -->
+<view class="revice_address">
+	<!-- 当收货地址不存在的时候按钮显示 -->
+	<view class="address_info" >
+		<view class="info_top">
+			<text class="name">收货人：{{address.userName}}</text>
+			<text class="phone">{{address.telNumber}}</text>
+		</view>
+		<view class="info_bottom">
+			{{ address.provinceName + address.cityName + address.countyName + address.detailInfo}}
+		</view>
+	</view>
+</view>
+
+<!-- 购物车内容 -->
+<view class="cart_content">
+	<view class="cart_title">商品</view>
+	<view class="cart_main">
+		<view class="cart_item" wx:for="{{cart}}" wx:key="goods_id">
+			<!-- 图片 -->
+			<navigator class="item_img">
+				<image  src="{{item.goods_small_logo?item.goods_small_logo:'https://img2.baidu.com/it/u=3247258460,3531169915&fm=26&fmt=auto'}}" mode="widthFix"/>
+			</navigator>
+			<!-- 商品信息 -->
+			<view class="item_info">
+				<!-- 上面的介绍 -->
+				<view class="good_name">{{item.goods_name}}</view>
+				<view class="good_price_wrap">
+					<view class="price">￥{{item.goods_price}}</view>
+					<view class="good_num_tool">
+						 <view class="good_num">X {{item.num}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+ 
+<!-- 底部工具栏 -->
+<view class="footer_uilt">
+	<!-- 总价格合计数量 -->
+	<view class="total_price_warp">
+		<view class="total_price">
+			合计：<text class="price">￥{{totalPrice}}</text>
+		</view>
+		<view >包含运费</view>
+	</view>
+	<!-- 结算按钮 -->
+	<view class="order_pay_warp" bind:tap="handleOrderPay">支付（{{totalNum}}）</view>
+</view>

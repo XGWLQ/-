@@ -1,1 +1,3 @@
-/* pages/auth/index.wxss */
+button{
+	margin: 70vh auto 0;
+}

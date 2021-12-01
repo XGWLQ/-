@@ -41,12 +41,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.params.cid = options.cid
+    this.data.params.cid = options.cid || ""
+    this.data.params.query = options.query || ""
     this._getGoodList()
   },
 
   // 点击tab改变
-  handleTabChenge (e) {
+  handleTabChenge(e) {
     /* 
     1、获取tas数据
     2、获取被点击的title索引
@@ -62,9 +63,11 @@ Page({
     })
   },
   // 获取上平列表数据
-  async _getGoodList () {
+  async _getGoodList() {
     const { data: res } = await requset({ url: '/goods/search', data: { ...this.data.params } })
+    // 获取到总条数
     let num = res.message.total
+    // 计算总条数 / 每一页的条数 可以分成多少页
     this.totalNum = Math.ceil(num / this.data.params.pagesize)
     this.setData({
       // 拼接的数组
@@ -91,7 +94,6 @@ Page({
     if (this.data.params.pagenum >= this.totalNum) { // 没有数据了
       wx.showToast({ title: '没有下一页了' });
     } else {
-
       this.data.params.pagenum++
       this._getGoodList()
     }
@@ -102,7 +104,7 @@ Page({
    * 2、把页码中重置为 1
    * 3、重新获取数据
    */
-  onPullDownRefresh () {
+  onPullDownRefresh() {
     this.data.params.pagenum = 1
     this.data.goodList = []
     this._getGoodList()
